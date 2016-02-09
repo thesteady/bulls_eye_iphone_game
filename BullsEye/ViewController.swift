@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
+    var currentValue: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,12 +22,18 @@ class ViewController: UIViewController {
     }
 
     @IBAction func showAlert() {
-        let alert = UIAlertController(title: "I'm hit!", message: "Ouch!", preferredStyle: .Alert)
+        let message = "The value of the slider is: \(currentValue)"
+
+        let alert = UIAlertController(title: "Bull's Eye?", message: message, preferredStyle: .Alert)
         
-        let action = UIAlertAction(title: "Sorry.", style: .Default, handler: nil)
+        let action = UIAlertAction(title: "Bam!", style: .Default, handler: nil)
         
         alert.addAction(action)
         presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func sliderMoved(slider: UISlider) {
+        currentValue = lroundf(slider.value)
     }
 
 }
